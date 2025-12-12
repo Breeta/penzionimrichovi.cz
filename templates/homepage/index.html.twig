@@ -1,0 +1,669 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vítejte v Penzionu Imrichovi na jižní Moravě{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-white font-serif" data-controller="main">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/98 backdrop-blur-sm shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-28">
+                <!-- Logo - větší -->
+                <div class="flex-shrink-0">
+                    <img src="{{ asset('images/logo.png') }}" alt="Penzion IMRICHOVI" class="h-24 w-auto mix-blend-multiply" />
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <button data-action="click->main#scrollTo" data-target="ubytovani" class="text-gray-700 hover:text-[#D6AD09] transition-colors">
+                        Ubytování
+                    </button>
+                    <button data-action="click->main#scrollTo" data-target="degustace" class="text-gray-700 hover:text-[#D6AD09] transition-colors">
+                        Degustace vína
+                    </button>
+                    <button data-action="click->main#scrollTo" data-target="vylety" class="text-gray-700 hover:text-[#D6AD09] transition-colors">
+                        Výlety
+                    </button>
+                    <button data-action="click->main#scrollTo" data-target="rezervace" class="bg-[#D6AD09] text-white px-6 py-3 rounded-full hover:bg-[#c09d08] transition-colors">
+                        Rezervace
+                    </button>
+                    <button data-action="click->main#scrollTo" data-target="kontakt" class="text-gray-700 hover:text-[#D6AD09] transition-colors">
+                        Kontakt
+                    </button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button data-action="click->main#toggleMenu" class="text-gray-700 hover:text-[#D6AD09]">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu">
+                            <line x1="4" x2="20" y1="12" y2="12" />
+                            <line x1="4" x2="20" y1="6" y2="6" />
+                            <line x1="4" x2="20" y1="18" y2="18" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div data-main-target="mobileMenu" class="hidden md:hidden border-t border-gray-200 bg-white">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <button data-action="click->main#scrollTo" data-target="ubytovani" class="block w-full text-left px-3 py-3 text-gray-700 hover:bg-gray-50">
+                    Ubytování
+                </button>
+                <button data-action="click->main#scrollTo" data-target="degustace" class="block w-full text-left px-3 py-3 text-gray-700 hover:bg-gray-50">
+                    Degustace vína
+                </button>
+                <button data-action="click->main#scrollTo" data-target="vylety" class="block w-full text-left px-3 py-3 text-gray-700 hover:bg-gray-50">
+                    Výlety
+                </button>
+                <button data-action="click->main#scrollTo" data-target="rezervace" class="block w-full text-left px-3 py-3 bg-[#D6AD09] text-white">
+                    Rezervace
+                </button>
+                <button data-action="click->main#scrollTo" data-target="kontakt" class="block w-full text-left px-3 py-3 text-gray-700 hover:bg-gray-50">
+                    Kontakt
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center pt-28 overflow-hidden">
+        <div class="absolute inset-0">
+            <video autoplay muted loop playsinline class="w-full h-full object-cover" poster="{{ asset('images/gallery/16.webp') }}">
+                <source src="{{ asset('video/banner-imrich.mp4') }}" type="video/mp4">
+                <!-- Fallback pro staré prohlížeče -->
+                <img loading="lazy"  src="{{ asset('images/gallery/16.webp') }}" alt="Penzion Imrichovi" class="w-full h-full object-cover" />
+            </video>
+        </div>
+        <div class="absolute inset-0 bg-black/50"></div>
+        <div class="relative z-10 text-center text-white px-4">
+            <h1 class="text-6xl md:text-8xl mb-8 max-w-4xl mx-auto text-[#D6AD09] drop-shadow-2xl">
+                Vítejte v Penzionu Imrichovi
+            </h1>
+            <p class="text-2xl md:text-4xl mb-10 max-w-2xl mx-auto opacity-95 drop-shadow-lg">
+                Rodinná pohoda a skvělé víno v srdci Podluží
+            </p>
+            <button data-action="click->main#scrollTo" data-target="rezervace" class="bg-[#D6AD09] text-white px-10 py-4 rounded-full hover:bg-[#c09d08] transition-all hover:scale-105 inline-flex items-center gap-2 text-xl">
+                Rezervovat pobyt
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down">
+                    <path d="m6 9 6 6 6-6" />
+                </svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- Introduction -->
+    <section class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="mb-6 text-4xl md:text-5xl text-[#D6AD09]">
+                        Rodinná pohoda a skvělé víno v srdci Podluží
+                    </h2>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        Hledáte klidné místo pro odpočinek na jižní
+                        Moravě, kde budete mít vinohrad na dosah ruky a
+                        skleničku vína ještě blíž? Penzion Imrichovi vám
+                        nabízí útulné ubytování přímo nad naším rodinným
+                        vinným sklepem v klidné části Moravské Nové Vsi.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed">
+                        Užijte si dovolenou s přáteli či rodinou. K
+                        dispozici máte nejen pohodlné pokoje, ale i
+                        kompletně vybavenou kuchyň pro přípravu snídaní
+                        či večeří, prostornou společenskou místnost a
+                        velkou terasu, která je jako stvořená pro letní
+                        večerní posezení.
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wine text-[#D6AD09] mb-4">
+                            <path d="M8 22h8" />
+                            <path d="M7 10h10" />
+                            <path d="M12 15v7" />
+                            <path d="M12 15a5 5 0 0 0 5-5c0-2-.5-4-2-6" />
+                            <path d="M12 15a5 5 0 0 1-5-5c0-2 .5-4 2-6" />
+                        </svg>
+                        <h3 class="mb-3">Přímo u zdroje</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Na degustaci to máte jen pár schodů
+                        </p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bike text-[#D6AD09] mb-4">
+                            <circle cx="5.5" cy="17.5" r="3.5" />
+                            <circle cx="18.5" cy="17.5" r="3.5" />
+                            <path d="M15 17.5h-1.5l-3-6 3-6h1.5" />
+                            <path d="m6.5 14-2 4" />
+                            <path d="m5.5 10.5 2-4h4.5" />
+                        </svg>
+                        <h3 class="mb-3">Cyklisté vítáni</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Bezpečná úschova kol v garáži
+                        </p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-car text-[#D6AD09] mb-4">
+                            <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9L2 12v9c0 .6.4 1 1 1h2" />
+                            <circle cx="7" cy="17" r="2" />
+                            <path d="M9 17h6" />
+                            <circle cx="17" cy="17" r="2" />
+                        </svg>
+                        <h3 class="mb-3">Parkování zdarma</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Parkujte přímo před penzionem
+                        </p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users text-[#D6AD09] mb-4">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        </svg>
+                        <h3 class="mb-3">Pro rodiny</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Dětské hřiště v blízkosti
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ubytování - jedna galerie -->
+    {% set image_filenames = [
+        '1.webp',
+        '2.webp',
+        '3.webp',
+        '4.webp',
+        '5.webp',
+        '6.webp',
+        '7.webp',
+        '8.webp',
+
+        '16.webp',
+        '9.webp',
+        '10.webp',
+        '11.webp',
+        '12.webp',
+        '13.webp',
+        '14.webp',
+        '15.webp',
+    ] %}
+    {% set image_paths = image_filenames|map(f => asset('images/gallery/' ~ f)) %}
+    <section id="ubytovani" class="py-24"
+        data-controller="gallery"
+        data-gallery-images-value="{{ image_paths|json_encode }}">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="mb-6 text-3xl md:text-5xl text-[#D6AD09]">
+                    Ubytování
+                </h2>
+                <p class="text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Nabízíme ubytování s celkovou kapacitou 20 lůžek.
+                    Všechny naše pokoje jsou zařízeny tak, abyste se u
+                    nás cítili jako doma, a každý z nich disponuje
+                    vlastním sociálním zařízením.
+                </p>
+            </div>
+
+            <!-- Galerie -->
+            <div class="mb-12">
+                <div class="relative rounded-xl overflow-hidden shadow-2xl mb-6 group" data-action="touchstart->gallery#handleTouchStart touchmove->gallery#handleTouchEnd touchend->gallery#handleSwipe">
+                    <img loading="lazy" data-gallery-target="image" src="{{ asset('images/gallery/' ~ image_filenames[0]) }}" alt="Ubytování 1" class="w-full h-[400px] md:h-[600px] object-cover" />
+
+                    <!-- Navigační šipky -->
+                    <button data-action="click->gallery#goToPrev" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 md:p-4 rounded-full transition-all md:opacity-0 md:group-hover:opacity-100" aria-label="Předchozí fotka">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left">
+                            <path d="m15 18-6-6 6-6" />
+                        </svg>
+                    </button>
+                    <button data-action="click->gallery#goToNext" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 md:p-4 rounded-full transition-all md:opacity-0 md:group-hover:opacity-100" aria-label="Další fotka">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right">
+                            <path d="m9 18 6-6-6-6" />
+                        </svg>
+                    </button>
+
+                    <!-- Čítač fotek -->
+                    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 text-white px-4 py-2 rounded-full text-sm backdrop-blur-sm">
+                        <span data-gallery-target="counter">1</span> / {{ image_filenames|length }}
+                    </div>
+
+                    <!-- Tečkové indikátory pro mobil -->
+                    <div class="absolute bottom-16 left-0 right-0 flex justify-center gap-2 md:hidden">
+                        {% for i in 0..image_filenames|length - 1 %}
+                        <button data-gallery-target="dot" data-action="click->gallery#handleImageClick" data-index="{{ i }}" class="w-2 h-2 rounded-full transition-all {% if i == 0 %}bg-[#D6AD09] w-6{% else %}bg-white/50{% endif %}" aria-label="Přejít na fotku {{ i + 1 }}"></button>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Miniaturky - skryté na mobilu, viditelné na tabletu a větším -->
+                <div class="hidden md:grid grid-cols-4 md:grid-cols-8 gap-3">
+                    {% for image in image_filenames %}
+                    <button data-gallery-target="thumbnail" data-action="click->gallery#handleImageClick" data-index="{{ loop.index0 }}" class="rounded-lg overflow-hidden transition-all {% if loop.index0 == 0 %}ring-4 ring-[#D6AD09] scale-105{% else %}opacity-70 hover:opacity-100{% endif %}">
+                        <img loading="lazy" src="{{ asset('images/gallery/' ~ image) }}" alt="Náhled {{ loop.index }}" class="w-full h-20 object-cover" />
+                    </button>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="bg-[#D6AD09]/10 rounded-xl p-10">
+                <h3 class="mb-6">Rozložení pokojů</h3>
+                <ul class="grid md:grid-cols-2 gap-5 mb-8">
+                    <li class="flex items-start gap-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check text-[#D6AD09] mt-1 flex-shrink-0">
+                            <path d="M20 6 9 17l-5-5" />
+                        </svg>
+                        <span class="leading-relaxed">
+                            4× Dvoulůžkový pokoj – ideální pro páry
+                        </span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check text-[#D6AD09] mt-1 flex-shrink-0">
+                            <path d="M20 6 9 17l-5-5" />
+                        </svg>
+                        <span class="leading-relaxed">
+                            1× Třílůžkový pokoj – pro menší rodinu
+                        </span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check text-[#D6AD09] mt-1 flex-shrink-0">
+                            <path d="M20 6 9 17l-5-5" />
+                        </svg>
+                        <span class="leading-relaxed">
+                            1× Čtyřlůžkový pokoj – s možností přistýlky
+                        </span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check text-[#D6AD09] mt-1 flex-shrink-0">
+                            <path d="M20 6 9 17l-5-5" />
+                        </svg>
+                        <span class="leading-relaxed">
+                            1× Rodinný apartmán – pět lůžek ve dvou
+                            pokojích
+                        </span>
+                    </li>
+                </ul>
+                <div class="border-t border-[#D6AD09]/20 pt-6">
+                    <p class="text-gray-700">
+                        <strong class="text-[#D6AD09]">
+                            Cena:
+                        </strong>
+                        Od 750 Kč / osoba / noc
+                    </p>
+                    <p class="text-gray-700 mt-2">
+                        <strong class="text-[#D6AD09]">
+                            Minimální délka pobytu:
+                        </strong>
+                        2 noci
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Degustace vína -->
+    <section id="degustace" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="order-2 md:order-1">
+                    <h2 class="mb-8 text-3xl md:text-5xl text-[#D6AD09]">
+                        Degustace vína
+                    </h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Co by to bylo za pobyt na Moravě bez dobrého
+                        vína? Souástí našeho penzionu je tradiční vinný
+                        sklep, kde se s láskou vnujeme vlastní produkci.
+                    </p>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        Rádi pro vás připravíme řízenou degustaci s možností ochutna až 20 vzorků vína, od svěžích
+                        mladých vín až po vyzrálé odrůdy typické pro
+                        oblast Podluží. Degustaci umíme doplnit o
+                        poctivé občerstvení z lokálních surovin.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check text-[#D6AD09] mt-1 flex-shrink-0">
+                                <path d="M20 6 9 17l-5-5" />
+                            </svg>
+                            <span class="leading-relaxed">
+                                Ochutnávka vín z vlastní produkce
+                            </span>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check text-[#D6AD09] mt-1 flex-shrink-0">
+                                <path d="M20 6 9 17l-5-5" />
+                            </svg>
+                            <span class="leading-relaxed">
+                                Posezení v autentickém prostředí sklepa
+                            </span>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check text-[#D6AD09] mt-1 flex-shrink-0">
+                                <path d="M20 6 9 17l-5-5" />
+                            </svg>
+                            <span class="leading-relaxed">
+                                Možnost zajištění občerstvení (studené mísy, teplá jídla)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2">
+                    <div class="space-y-4">
+                        <img loading="lazy" src="{{ asset('images/sklep-1.webp') }}" alt="Vinný sklep" class="rounded-lg shadow-lg w-full h-64 object-cover" />
+                        <img loading="lazy" src="{{ asset('images/gallery/8.webp') }}" alt="Vinný sklep" class="rounded-lg shadow-lg w-full h-64 object-cover" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Výlety a zážitky -->
+    <section id="vylety" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="mb-6 text-3xl md:text-5xl text-[#D6AD09]">
+                    Kam na výlet a zážitky?
+                </h2>
+                <p class="text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Moravská Nová Ves je ideálním výchozím bodem pro
+                    poznávání krás jižní Moravy. A často ani nemusíte
+                    opouštět obec, abyste zažili tu pravou atmosféru.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow overflow-hidden">
+                    <img src="{{ asset('images/9e823852dfde2914fae13af5b7ec2eeb91736be1.png') }}" alt="Vinařské akce" class="w-full h-48 object-cover" />
+                    <div class="p-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wine text-[#D6AD09] mb-4">
+                            <path d="M8 22h8" />
+                            <path d="M7 10h10" />
+                            <path d="M12 15v7" />
+                            <path d="M12 15a5 5 0 0 0 5-5c0-2-.5-4-2-6" />
+                            <path d="M12 15a5 5 0 0 1-5-5c0-2 .5-4 2-6" />
+                        </svg>
+                        <h3 class="mb-3">Vinařské akce</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Dny otevřených sklepů, letní Otevřené sklepy,
+                            vinobraní nebo tradiční krojované hody
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow overflow-hidden">
+                    <img src="{{ asset('images/7d7a4da5c6515bac7b5dc142c236fd6452e1d129.png') }}" alt="Slovanské hradiště" class="w-full h-48 object-cover" />
+                    <div class="p-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-home text-[#D6AD09] mb-4">
+                            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                            <polyline points="9 22 9 12 15 12 15 22" />
+                        </svg>
+                        <h3 class="mb-3">Slovanské hradiště</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Mikulčice – významná archeologická lokalita
+                            památka Velké Moravy (cca 4 km)
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow overflow-hidden">
+                    <img src="{{ asset('images/14cc0b6f98f7fd460d08cfd3e4b8073fc00da743.png') }}" alt="Lednicko-valtický areál" class="w-full h-48 object-cover" />
+                    <div class="p-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wine text-[#D6AD09] mb-4">
+                            <path d="M8 22h8" />
+                            <path d="M7 10h10" />
+                            <path d="M12 15v7" />
+                            <path d="M12 15a5 5 0 0 0 5-5c0-2-.5-4-2-6" />
+                            <path d="M12 15a5 5 0 0 1-5-5c0-2 .5-4 2-6" />
+                        </svg>
+                        <h3 class="mb-3">
+                            Lednicko-valtický areál
+                        </h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Světový unikát UNESCO s nádhernými zámky a
+                            parky (cca 20 km)
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow overflow-hidden">
+                    <img src="{{ asset('images/kola.png') }}" alt="Cyklostezky Podluží" class="w-full h-48 object-cover" />
+                    <div class="p-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bike text-[#D6AD09] mb-4">
+                            <circle cx="5.5" cy="17.5" r="3.5" />
+                            <circle cx="18.5" cy="17.5" r="3.5" />
+                            <path d="M15 17.5h-1.5l-3-6 3-6h1.5" />
+                            <path d="m6.5 14-2 4" />
+                            <path d="m5.5 10.5 2-4h4.5" />
+                        </svg>
+                        <h3 class="mb-3">Cyklostezky Podluží</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Rovinatá krajina mezi vinohrady a lužními lesy
+                            ideální pro celou rodinu
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rezervace -->
+    <section id="rezervace" class="py-24 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="mb-6 text-3xl md:text-5xl text-[#D6AD09]">
+                    Online rezervace
+                </h2>
+                <p class="text-gray-600 leading-relaxed">
+                    Vyplňte prosím formulář níže a my se vám ozveme s
+                    potvrzením dostupnosti
+                </p>
+            </div>
+
+            <form class="bg-white rounded-xl shadow-xl p-10">
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div>
+                        <label class="block mb-3">
+                            Datum příjezdu
+                        </label>
+                        <input type="date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent" />
+                    </div>
+                    <div>
+                        <label class="block mb-3">
+                            Datum odjezdu
+                        </label>
+                        <input type="date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent" />
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div>
+                        <label class="block mb-3">Dospělí</label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5+</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block mb-3">
+                            Děti do 3 let
+                        </label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3+</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="mb-4">Pokoje</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block mb-3">
+                                Dvoulůžkový pokoj (max. 4)
+                            </label>
+                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block mb-3">
+                                Třílůžkový pokoj (max. 1)
+                            </label>
+                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block mb-3">
+                                Čtyřlůžkový pokoj (max. 1)
+                            </label>
+                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block mb-3">
+                                Apartmán (max. 1)
+                            </label>
+                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="mb-4">Objednavatel</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block mb-3">Jméno</label>
+                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent" />
+                        </div>
+                        <div>
+                            <label class="block mb-3">Město</label>
+                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent" />
+                        </div>
+                        <div>
+                            <label class="block mb-3">Telefon</label>
+                            <input type="tel" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent" />
+                        </div>
+                        <div>
+                            <label class="block mb-3">E-mail</label>
+                            <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <label class="block mb-3">Poznámky</label>
+                    <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent" placeholder="Máte nějaké speciální poadavky nebo dotazy?"></textarea>
+                </div>
+
+                <p class="text-sm text-gray-500 mb-6 leading-relaxed">
+                    Vaše odeslané data budou použity pouze pro
+                    rezervaci do penzionu.
+                </p>
+
+                <button type="submit" class="w-full bg-[#D6AD09] text-white py-4 rounded-lg hover:bg-[#c09d08] transition-all hover:scale-105">
+                    Objednat ubytování
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- kontakt -->
+    <section id="kontakt" class="py-24 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="mb-6 text-3xl md:text-5xl text-[#D6AD09]">
+                    Kontakt
+                </h2>
+
+                <h3 class=" text-2xl mb-2">    Telefony</h3>
+
+                <p class="text-gray-600 ">
+
+                    <b class="mr-2" >Aleš Imrich:</b>  <span class="text-2xl "> +420 777 067 916 </span> <br>
+                    <b class="mr-2">Josef Imrich:</b> <span class="text-2xl"> +420 777 084 309 </span>
+
+                </p>
+                <br>
+
+                <h3 class=" text-2xl mb-2">     Adresa penzionu</h3>
+
+                <p class="text-gray-600 "> <a class="underline" target="_blank"
+                           href="https://www.google.cz/maps/place/Penzion+Imrichovi/@48.8080028,17.005644,21z/data=!4m9!3m8!1s0x47132ba6d3f19da9:0xdddf1aaec38f1d0b!5m2!4m1!1i2!8m2!3d48.8079814!4d17.0053943!16s%2Fg%2F11gk0v0b5_?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D">           Moravská Nová Ves, Lipová  (odkaz na mapu)</a>
+
+                </p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-12">
+                <div>
+                    <img src="{{ asset('images/logo.png') }}" alt="Penzion IMRICHOVI" class="h-20 w-auto mb-6 brightness-0 invert" />
+                    <p class="text-gray-400 leading-relaxed">
+                        Rodinná pohoda a skvělé víno v srdci Podluží
+                    </p>
+                </div>
+                <div>
+                    <h3 class="mb-6">Provozovatel</h3>
+                    <div class="space-y-3 text-gray-400">
+                        <p>Aleš Imrich <br> Na koncích 1062
+                            <br>  Moravská Nová Ves 691 55 <br>
+                         IČ: 70480541<br>
+                        DIČ: CZ8003124305</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="mb-6">Odkazy</h3>
+                    <div class="space-y-3">
+                        <button data-action="click->main#scrollTo" data-target="ubytovani" class="block text-gray-400 hover:text-white transition-colors">
+                            Ubytování
+                        </button>
+                        <button data-action="click->main#scrollTo" data-target="degustace" class="block text-gray-400 hover:text-white transition-colors">
+                            Degustace vína
+                        </button>
+                        <button data-action="click->main#scrollTo" data-target="vylety" class="block text-gray-400 hover:text-white transition-colors">
+                            Výlety
+                        </button>
+                        <button data-action="click->main#scrollTo" data-target="rezervace" class="block text-gray-400 hover:text-white transition-colors">
+                            Rezervace
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>
+                    &copy; {{ 'now'|date('Y') }} Penzion Imrichovi. Všechna práva
+                    vyhrazena.
+                </p>
+            </div>
+        </div>
+    </footer>
+</div>
+{% endblock %}
