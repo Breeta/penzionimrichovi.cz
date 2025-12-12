@@ -1,0 +1,21 @@
+<h1>Nová poptávka z webu</h1>
+
+<p><strong>Datum příjezdu:</strong> {{ data.arrival }}</p>
+<p><strong>Datum odjezdu:</strong> {{ data.departure }}</p>
+<p><strong>Dospělí:</strong> {{ data.adults }}</p>
+<p><strong>Děti do 3 let:</strong> {{ data.children }}</p>
+
+<h2>Pokoje</h2>
+<p><strong>Dvoulůžkový pokoj:</strong> {{ data.room_double }}</p>
+<p><strong>Třílůžkový pokoj:</strong> {{ data.room_triple }}</p>
+<p><strong>Čtyřlůžkový pokoj:</strong> {{ data.room_quad }}</p>
+<p><strong>Apartmán:</strong> {{ data.room_apartment }}</p>
+
+<h2>Objednavatel</h2>
+<p><strong>Jméno:</strong> {{ data.name }}</p>
+<p><strong>Město:</strong> {{ data.city }}</p>
+<p><strong>Telefon:</strong> {{ data.phone }}</p>
+<p><strong>E-mail:</strong> {{ data.email }}</p>
+
+<h2>Poznámky</h2>
+<p>{{ data.notes|nl2br }}</p>

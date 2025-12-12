@@ -9,6 +9,7 @@
     <nav class="fixed top-0 left-0 right-0 bg-white/98 backdrop-blur-sm shadow-sm z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-28">
+
                 <!-- Logo - větší -->
                 <div class="flex-shrink-0">
                     <img src="{{ asset('images/logo.png') }}" alt="Penzion IMRICHOVI" class="h-24 w-auto mix-blend-multiply" />
@@ -31,6 +32,11 @@
                     <button data-action="click->main#scrollTo" data-target="kontakt" class="text-gray-700 hover:text-[#D6AD09] transition-colors">
                         Kontakt
                     </button>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <div>
+                        <a class="" href="{{ path('contact_form_index') }}">Objednávky</a>
+                    </div>
+                    {% endif %}
                 </div>
 
                 <!-- Mobile menu button -->
@@ -293,7 +299,7 @@
                         <strong class="text-[#D6AD09]">
                             Cena:
                         </strong>
-                        Od 750 Kč / osoba / noc
+                        Od 550 Kč / osoba / noc
                     </p>
                     <p class="text-gray-700 mt-2">
                         <strong class="text-[#D6AD09]">
@@ -464,42 +470,40 @@
                 </p>
             </div>
 
-            <form class="bg-white rounded-xl shadow-xl p-10">
+            <form data-controller="contact-form" data-action="submit->contact-form#submit" class="bg-white rounded-xl shadow-xl p-10">
+                <input type="hidden" name="_token" value="{{ csrf_token('contact-form') }}">
                 <div class="grid md:grid-cols-2 gap-6 mb-8">
                     <div>
                         <label class="block mb-3">
                             Datum příjezdu
                         </label>
-                        <input type="date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent" />
+                        <input type="date" name="arrival" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent" required />
                     </div>
                     <div>
                         <label class="block mb-3">
                             Datum odjezdu
                         </label>
-                        <input type="date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent" />
+                        <input type="date" name="departure" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent" required />
                     </div>
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-6 mb-8">
                     <div>
                         <label class="block mb-3">Dospělí</label>
-                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5+</option>
+                        <select name="adults" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent" required>
+                            {% for i in 0..20 %}
+                               <option value="{{ i }}">{{ i }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div>
                         <label class="block mb-3">
                             Děti do 3 let
                         </label>
-                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent">
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3+</option>
+                        <select name="children" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent">
+                            {% for i in 0..10 %}
+                                <option value="{{ i }}">{{ i }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                 </div>
@@ -511,7 +515,7 @@
                             <label class="block mb-3">
                                 Dvoulůžkový pokoj (max. 4)
                             </label>
-                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent">
+                            <select name="room_double" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent">
                                 <option value="0">0</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -524,7 +528,7 @@
                             <label class="block mb-3">
                                 Třílůžkový pokoj (max. 1)
                             </label>
-                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent">
+                            <select name="room_triple" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent">
                                 <option value="0">0</option>
                                 <option value="1">1</option>
                             </select>
@@ -534,7 +538,7 @@
                             <label class="block mb-3">
                                 Čtyřlůžkový pokoj (max. 1)
                             </label>
-                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent">
+                            <select name="room_quad" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent">
                                 <option value="0">0</option>
                                 <option value="1">1</option>
                             </select>
@@ -542,9 +546,9 @@
 
                         <div>
                             <label class="block mb-3">
-                                Apartmán (max. 1)
+                                Pětilůžkový apartmán (max. 1)
                             </label>
-                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent">
+                            <select name="room_apartment" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent">
                                 <option value="0">0</option>
                                 <option value="1">1</option>
                             </select>
@@ -557,26 +561,27 @@
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
                             <label class="block mb-3">Jméno</label>
-                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent" />
+                            <input type="text" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent" required />
                         </div>
                         <div>
                             <label class="block mb-3">Město</label>
-                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent" />
+                            <input type="text" name="city" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent" required />
                         </div>
                         <div>
                             <label class="block mb-3">Telefon</label>
-                            <input type="tel" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent" />
+                            <input type="tel" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent" required />
                         </div>
                         <div>
                             <label class="block mb-3">E-mail</label>
-                            <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent" />
+                            <input type="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent" required />
                         </div>
                     </div>
                 </div>
 
                 <div class="mb-8">
                     <label class="block mb-3">Poznámky</label>
-                    <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent" placeholder="Máte nějaké speciální poadavky nebo dotazy?"></textarea>
+                    <textarea name="notes" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D6AD09] focus:border-transparent"
+                              placeholder="Máte nějaké speciální požadavky nebo dotazy?"></textarea>
                 </div>
 
                 <p class="text-sm text-gray-500 mb-6 leading-relaxed">
@@ -584,7 +589,7 @@
                     rezervaci do penzionu.
                 </p>
 
-                <button type="submit" class="w-full bg-[#D6AD09] text-white py-4 rounded-lg hover:bg-[#c09d08] transition-all hover:scale-105">
+                <button type="submit" data-contact-form-target="button" class="w-full bg-[#D6AD09] text-white py-4 rounded-lg hover:bg-[#c09d08] transition-all hover:scale-105">
                     Objednat ubytování
                 </button>
             </form>
@@ -603,8 +608,8 @@
 
                 <p class="text-gray-600 ">
 
-                    <b class="mr-2" >Aleš Imrich:</b>  <span class="text-2xl "> +420 777 067 916 </span> <br>
-                    <b class="mr-2">Josef Imrich:</b> <span class="text-2xl"> +420 777 084 309 </span>
+                    <b class="mr-2" >Aleš Imrich:</b>  <a href="tel:+420777067916" class="text-2xl "> +420 777 067 916 </a> <br>
+                    <b class="mr-2">Josef Imrich:</b> <a href="tel:+420777084309" class="text-2xl"> +420 777 084 309 </a>
 
                 </p>
                 <br>
@@ -614,6 +619,11 @@
                 <p class="text-gray-600 "> <a class="underline" target="_blank"
                            href="https://www.google.cz/maps/place/Penzion+Imrichovi/@48.8080028,17.005644,21z/data=!4m9!3m8!1s0x47132ba6d3f19da9:0xdddf1aaec38f1d0b!5m2!4m1!1i2!8m2!3d48.8079814!4d17.0053943!16s%2Fg%2F11gk0v0b5_?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D">           Moravská Nová Ves, Lipová  (odkaz na mapu)</a>
 
+                </p>
+                <br>
+
+                <p class="text-gray-600">
+                    <b>Email:</b> <a class="text-2xl underline" href="mailto: info@penzionimrichovi.cz">info@penzionimrichovi.cz</a>
                 </p>
             </div>
         </div>
