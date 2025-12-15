@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="60060d34-db5f-4ebd-8073-3a475f424463" name="penzionimrichovi.cz" url="http://ftp.penzionimrichovi.cz">
+        <fileTransfer rootFolder="/public_html" host="ftp.penzionimrichovi.cz" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
