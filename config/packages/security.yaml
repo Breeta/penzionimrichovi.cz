@@ -7,7 +7,7 @@ security:
         users_in_memory:
             memory:
                 users:
-                    ales: { password: ' $2y$13$4L8QNrwKRx55K0pMLmCPOes8gXiJXKQCPh8cBUonM/Ony9EgTYFfC', roles: ['ROLE_ADMIN'] }
+                    ales: { password: '$2y$13$jL1K2aacGZA4VWyH62RLQuBKYuenSvJ5H2PfEvbWXMzu0LTvVJ9We', roles: ['ROLE_ADMIN'] }
                     breeta: { password: '$2y$13$pp6Q24Lmp2MKETC9ZoeT3eFLsw7CzGyys5dKehFHTyOhqLvp8pUVS', roles: ['ROLE_ADMIN'] }
 
     firewalls:
