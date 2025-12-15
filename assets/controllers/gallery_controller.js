@@ -55,11 +55,13 @@ export default class extends Controller {
     }
 
     goToNext() {
+        this.stopAutoplay();
         this.currentIndex = (this.currentIndex + 1) % this.imagesValue.length;
         this.updateGallery();
     }
 
     goToPrev() {
+        this.stopAutoplay();
         this.currentIndex = (this.currentIndex - 1 + this.imagesValue.length) % this.imagesValue.length;
         this.updateGallery();
     }
