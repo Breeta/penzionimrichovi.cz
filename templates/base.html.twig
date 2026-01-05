@@ -3,16 +3,91 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}{% endblock %}</title>
-        <meta name="description" content="Hledáte klidné místo pro odpočinek na jižní Moravě, kde budete mít vinohrad na dosah ruky a skleničku vína ještě blíž?
-         Ideální pro milovníky vína, cykloturistiku nebo rodinnou dovolenou.">
+        <title>{% block title %}Vítejte v Penzionu Imrichovi{% endblock %}</title>
+        <meta name="description" content="Hledáte klidné místo pro odpočinek na jižní Moravě, kde budete mít vinohrad na dosah ruky a skleničku vína ještě blíž? Ideální pro milovníky vína, cykloturistiku nebo rodinnou dovolenou.">
         <link rel="icon" href="{{ asset('icon.png') }}">
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ app.request.uri }}">
+        <meta property="og:title" content="Vítejte v Penzionu Imrichovi">
+        <meta property="og:description" content="Hledáte klidné místo pro odpočinek na jižní Moravě, kde budete mít vinohrad na dosah ruky a skleničku vína ještě blíž? Ideální pro milovníky vína, cykloturistiku nebo rodinnou dovolenou.">
+        <meta property="og:image" content="{{ absolute_url(asset('images/gallery/16.webp')) }}">
+        <meta property="og:site_name" content="Penzion Imrichovi">
+
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "BedAndBreakfast",
+                "name": "Penzion Imrichovi",
+                "description": "Útulné ubytování přímo nad rodinným vinným sklepem v klidné části Moravské Nové Vsi. Nabízíme pokoje s vlastním sociálním zařízením, společenskou místnost, kuchyň a terasu.",
+                "url": "https://penzionimrichovi.cz/",
+                "telephone": "+420 777 067 916",
+                "email": "info@penzionimrichovi.cz",
+                "priceRange": "od {{ priceDefault  }} CZK",
+                "image": "https://penzionimrichovi.cz{{ asset('images/logo.png') }}",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "Lipová",
+                    "addressLocality": "Moravská Nová Ves",
+                    "postalCode": "691 55",
+                    "addressCountry": "CZ"
+                },
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": "48.805500",
+                    "longitude": "17.016600"
+                },
+                "amenityFeature": [
+                    {
+                        "@type": "LocationFeatureSpecification",
+                        "name": "Vinný sklep",
+                        "value": true
+                    },
+                    {
+                        "@type": "LocationFeatureSpecification",
+                        "name": "Úschova kol",
+                        "value": true
+                    },
+                    {
+                        "@type": "LocationFeatureSpecification",
+                        "name": "Parkování zdarma",
+                        "value": true
+                    },
+                    {
+                        "@type": "LocationFeatureSpecification",
+                        "name": "Kuchyňka",
+                        "value": true
+                    },
+                    {
+                        "@type": "LocationFeatureSpecification",
+                        "name": "Terasa",
+                        "value": true
+                    }
+                ],
+                "contactPoint": [
+                    {
+                        "@type": "ContactPoint",
+                        "telephone": "+420 777 067 916",
+                        "contactType": "reservations",
+                        "name": "Aleš Imrich"
+                    },
+                    {
+                        "@type": "ContactPoint",
+                        "telephone": "+420 777 084 309",
+                        "contactType": "customer support",
+                        "name": "Josef Imrich"
+                    }
+                ]
+            }
+        </script>
     </head>
     <body>
         {% block body %}{% endblock %}
