@@ -11,8 +11,7 @@ export default class extends Controller {
         this.touchStart = 0;
         this.touchEnd = 0;
         this.isAutoPlaying = true;
-
-        this.startAutoplay();
+        // this.startAutoplay();
     }
 
     startAutoplay() {
