@@ -63,6 +63,7 @@ class ContactFormController extends AbstractController
 
              $email = (new Email())
                  ->from('info@penzionimrichovi.cz')
+                 ->replyTo($contactForm->getEmail())
                  ->to('info@penzionimrichovi.cz')
                  ->subject('Nová poptávka ubytování')
                  ->html($this->renderView('emails/contact_form.html.twig', ['data' => $data]));
