@@ -16,7 +16,7 @@
                 </div>
 
                 <!-- Desktop Navigation -->
-                <div class="hidden md:flex space-x-8 items-center">
+                <div class="hidden lg:flex space-x-8 items-center">
                     <button data-action="click->main#scrollTo" data-target="ubytovani" class="text-gray-700 hover:text-[#D6AD09] transition-colors cursor-pointer">
                         Ubytování
                     </button>
@@ -25,6 +25,9 @@
                     </button>
                     <button data-action="click->main#scrollTo" data-target="vylety" class="text-gray-700 hover:text-[#D6AD09] transition-colors cursor-pointer">
                         Výlety
+                    </button>
+                    <button data-action="click->main#scrollTo" data-target="reference" class="text-gray-700 hover:text-[#D6AD09] transition-colors cursor-pointer">
+                        Reference
                     </button>
                     <button data-action="click->main#scrollTo" data-target="rezervace" class="bg-[#D6AD09] text-white px-6 py-3 rounded-full hover:bg-[#c09d08] transition-colors cursor-pointer">
                         Rezervace
@@ -40,7 +43,7 @@
                 </div>
 
                 <!-- Mobile menu button -->
-                <div class="md:hidden">
+                <div class="lg:hidden">
                     <button data-action="click->main#toggleMenu" class="text-gray-700 hover:text-[#D6AD09]" aria-labelledby="mobileMenu">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu">
                             <line x1="4" x2="20" y1="12" y2="12" />
@@ -53,7 +56,7 @@
         </div>
 
         <!-- Mobile Navigation -->
-        <div data-main-target="mobileMenu" class="hidden md:hidden border-t border-gray-200 bg-white" id="mobileMenu">
+        <div data-main-target="mobileMenu" class="hidden lg:hidden border-t border-gray-200 bg-white" id="mobileMenu">
             <div class="px-2 pt-2 pb-3 space-y-1">
                 <button data-action="click->main#scrollTo" data-target="ubytovani" class="block w-full text-left px-3 py-3 text-gray-700 hover:bg-gray-50">
                     Ubytování
@@ -457,8 +460,84 @@
         </div>
     </section>
 
+    <!-- Google Reference -->
+    <section id="reference" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="mb-6 text-3xl md:text-5xl text-[#D6AD09]">
+                    Co říkají naši hosté
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                    Přečtěte si zkušenosti hostů, kteří u nás již pobývali (Google recenze).
+                </p>
+            </div>
+
+            <div class="grid  lg:grid-cols-3 gap-6">
+
+
+                <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow p-6 flex flex-col">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-11 h-11 rounded-full bg-[#D6AD09] text-white flex items-center justify-center font-bold text-lg flex-shrink-0">
+                            J
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-800 leading-tight">  Jana Sajdlova</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-0.5 mb-3">
+                        {% for i in 1..5 %}<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[#D6AD09]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{% endfor %}
+                    </div>
+                    <p class="text-sm text-gray-600 leading-relaxed flex-1">
+                        „Maximální spokojenost. Majitelé jsou velmi milí, vstřícní a ochotní. Penzion čistý, skvěle vybavený. Krásné koupelny, pohodlné postele, vybavená kuchyň. Super!"
+                    </p>
+                </div>
+
+
+                <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow p-6 flex flex-col">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-11 h-11 rounded-full bg-[#D6AD09] text-white flex items-center justify-center font-bold text-lg flex-shrink-0">
+                            M
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-800 leading-tight">Michal Pomp</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-0.5 mb-3">
+                        {% for i in 1..5 %}<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[#D6AD09]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{% endfor %}
+                    </div>
+                    <p class="text-sm text-gray-600 leading-relaxed flex-1">
+                        „Velmi milí majitelé, čisté pokoje, rozumná cena. Mají vlastní vinohrad, vyrábí vlastní víno, můžete zakoupit přímo u majitelů. Doporučuji."
+                    </p>
+                </div>
+
+
+                <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow p-6 flex flex-col">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-11 h-11 rounded-full bg-[#D6AD09] text-white flex items-center justify-center font-bold text-lg flex-shrink-0">
+                            A
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-800 leading-tight">Aleš Máček</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-0.5 mb-3">
+                        {% for i in 1..5 %}<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[#D6AD09]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{% endfor %}
+                    </div>
+                    <p class="text-sm text-gray-600 leading-relaxed flex-1">
+                        „Penzion s hezkými pokoji, koupelnou a společnou hezky vybavenou kuchyňkou. Příjemné posezení na terásce s bazénem a vynikající vína přímo od majitelů kteří jsou velmi milý."
+                    </p>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+    </section>
+
     <!-- Rezervace -->
-    <section id="rezervace" class="py-24 bg-gray-50">
+    <section id="rezervace" class="py-24  ">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="mb-6 text-3xl md:text-5xl text-[#D6AD09]">
@@ -470,7 +549,7 @@
                 </p>
             </div>
 
-            <form data-controller="contact-form" data-action="submit->contact-form#submit" class="bg-white rounded-xl shadow-xl p-10">
+            <form data-controller="contact-form" data-action="submit->contact-form#submit" class="bg-white rounded-xl shadow-xl p-10 border border-gray-300">
                 <input type="hidden" name="_token" value="{{ csrf_token('contact-form') }}">
                 <div class="grid md:grid-cols-2 gap-6 mb-8">
                     <div>
