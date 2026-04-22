@@ -73,6 +73,11 @@
                 <button data-action="click->main#scrollTo" data-target="kontakt" class="block w-full text-left px-3 py-3 text-gray-700 hover:bg-gray-50">
                     Kontakt
                 </button>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div>
+                        <a class="" href="{{ path('contact_form_index') }}">Objednávky</a>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </nav>
